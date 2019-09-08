@@ -1,0 +1,307 @@
+# Django-chaos-engeineering translation file
+# Copyright (C) 2019
+# This file is distributed under the same license as the djangochaos package.
+# Nicolas Kuttler, chaos@kuttler.eu, 2019
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-08 12:46-0600\n"
+"PO-Revision-Date: 2019-09-13 01:18+0200\n"
+"Last-Translator: Nicolas Kuttler <i18n@kuttler.eu>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: djangochaos/admin.py:17
+msgid "Disable selected actions"
+msgstr "Deaktiviert ausgewählte Aktionen"
+
+#: djangochaos/admin.py:24
+msgid "Enable selected actions"
+msgstr "Aktiviert ausgewählte Aktionen"
+
+#: djangochaos/apps.py:6
+msgid "chaos"
+msgstr "chaos"
+
+#: djangochaos/management/commands/chaos.py:37
+#: djangochaos/management/commands/chaos.py:58
+msgid "The action's effect"
+msgstr ""
+
+#: djangochaos/management/commands/chaos.py:40
+msgid "Url (by name) to act on"
+msgstr "UR -Name für die Aktion"
+
+#: djangochaos/management/commands/chaos.py:47
+#: djangochaos/management/commands/chaos.py:75
+msgid "KVs for the created action, see the documentation"
+msgstr "KVs für die erstellte Aktion, sie Dokumentation"
+
+#: djangochaos/management/commands/chaos.py:61
+msgid "The value of the attribute to match"
+msgstr "Der Wert des Attributes der übereinstimmen muss"
+
+#: djangochaos/management/commands/chaos.py:68
+msgid "The model attribute to match"
+msgstr "Das Attribut des Modells das übereinstimmen muss"
+
+#: djangochaos/management/commands/chaos.py:82
+msgid "Filter by verb"
+msgstr "Filter nach Verb"
+
+#: djangochaos/management/commands/chaos.py:89
+msgid "Filter by action model"
+msgstr "Filter nach Aktiionsmodell"
+
+#: djangochaos/management/commands/chaos.py:92
+#: djangochaos/management/commands/chaos.py:104
+msgid "Dump more data"
+msgstr "Mehr Daten ausgeben"
+
+#: djangochaos/management/commands/chaos.py:95
+#: djangochaos/management/commands/chaos.py:106
+msgid "Dump excessive data"
+msgstr "Exzessive Daten ausgeben"
+
+#: djangochaos/management/commands/chaos.py:101
+msgid "Action model"
+msgstr "Aktionsmodell"
+
+#: djangochaos/management/commands/chaos.py:103
+msgid "Object id"
+msgstr "Objekt-Id"
+
+#: djangochaos/management/commands/chaos.py:115
+msgid "The users to have a party for"
+msgstr "Der Benutzer der Spaß haben soll"
+
+#: djangochaos/management/commands/chaos.py:122
+msgid "The groups to have a party for"
+msgstr "Die Gruppen die Spaß haben sollen"
+
+#: djangochaos/management/commands/chaos.py:126
+msgid "Delete existing storm actions"
+msgstr "Existierende Sturm-Aktionen löschen"
+
+#: djangochaos/management/commands/chaos.py:129
+#, python-format
+msgid "Probability %% of created actions"
+msgstr "Wahrscheinlichkeit %% der erzeugten Aktion"
+
+#: djangochaos/management/commands/chaos.py:192
+msgid "No chaos actions found"
+msgstr "Keine Aktionen gerunden"
+
+#: djangochaos/management/commands/chaos.py:212
+msgid "Created action: {}"
+msgstr "Aktion erstellt: {}"
+
+#: djangochaos/mock_data.py:41
+msgid "Django-chaos mock data generation not allowed"
+msgstr "Django-chaos mock data Erzeugung nicht erlaubt"
+
+#: djangochaos/models.py:51
+msgid "Model name"
+msgstr "Modell Name"
+
+#: djangochaos/models.py:52
+msgid "Model module name"
+msgstr "Modell Modul Name"
+
+#: djangochaos/models.py:55
+msgid "Model applicatin label"
+msgstr "Modell Applikations Name"
+
+#: djangochaos/models.py:59
+msgid "Model parent class name"
+msgstr "Modell Oberklasse Name"
+
+#: djangochaos/models.py:167 djangochaos/models.py:616
+msgid "Creation time"
+msgstr "Erstellungszeit"
+
+#: djangochaos/models.py:170 djangochaos/models.py:619
+msgid "Modification time"
+msgstr "Bearbeitungszeit"
+
+#: djangochaos/models.py:177
+msgid "Limit the action to this host, blank for any"
+msgstr "Begrenze die Aktion auf diesen Host, leer für alle"
+
+#: djangochaos/models.py:178
+msgid "On host"
+msgstr "Auf host"
+
+#: djangochaos/models.py:180
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: djangochaos/models.py:193
+msgid "id"
+msgstr ""
+
+#: djangochaos/models.py:194
+msgid "verb"
+msgstr ""
+
+#: djangochaos/models.py:195 djangochaos/models.py:298
+msgid "enabled"
+msgstr "aktiviert"
+
+#: djangochaos/models.py:196 djangochaos/models.py:204
+msgid "probability"
+msgstr "Wahrscheinlichkeit"
+
+#: djangochaos/models.py:205
+msgid "for users"
+msgstr "Für Benutzer"
+
+#: djangochaos/models.py:206
+msgid "for groups"
+msgstr "Für Gruppen"
+
+#: djangochaos/models.py:207
+msgid "on host"
+msgstr "Auf host"
+
+#: djangochaos/models.py:208
+msgid "additional config"
+msgstr "Zusätzliche Konfiguration"
+
+#: djangochaos/models.py:214
+msgid "creation time"
+msgstr "Erstellungszeit"
+
+#: djangochaos/models.py:215
+msgid "modification time"
+msgstr "Bearbeitungszeit"
+
+#: djangochaos/models.py:298
+msgid "disabled"
+msgstr "deaktiviert"
+
+#: djangochaos/models.py:343
+msgid "Chaos action: raise {}"
+msgstr "Chaos Aktion: raise: {}"
+
+#: djangochaos/models.py:347
+msgid "Could not raise configured exception {}"
+msgstr "Konnte die konfigurierte exception {} nicht raisen"
+
+#: djangochaos/models.py:364
+msgid "Chaos action: slow {}ms"
+msgstr "Chaos Aktion: langsam: {}"
+
+#: djangochaos/models.py:398
+msgid "act on url name"
+msgstr "Aktion bei Urlname"
+
+#: djangochaos/models.py:412 djangochaos/models.py:518
+msgid "slow"
+msgstr "langsam"
+
+#: djangochaos/models.py:413
+msgid "return"
+msgstr "rückgabe"
+
+#: djangochaos/models.py:414 djangochaos/models.py:519
+msgid "raise"
+msgstr ""
+
+#: djangochaos/models.py:419 djangochaos/models.py:534
+msgid "Please refer to the documentation for configuration hints"
+msgstr "Bitte schaue in die Dokumentation über Konfiguration"
+
+#: djangochaos/models.py:423
+msgid "View name for response"
+msgstr "View-Name für response"
+
+#: djangochaos/models.py:424
+msgid "Act on url name"
+msgstr "Aktion bei Urlname"
+
+#: djangochaos/models.py:456
+msgid "Chaos action: return {}"
+msgstr "Chaos Aktion: rückgabe: {}"
+
+#: djangochaos/models.py:466
+msgid "Chaos response {}"
+msgstr ""
+
+#: djangochaos/models.py:467
+msgid "Response status set to {}"
+msgstr "Response Status auf {} gesetzt"
+
+#: djangochaos/models.py:472
+msgid "ChaosActionResponse"
+msgstr ""
+
+#: djangochaos/models.py:473
+msgid "ChaosActionResponses"
+msgstr ""
+
+#: djangochaos/models.py:512
+msgid "act on attribute"
+msgstr "Aktion bei attribut"
+
+#: djangochaos/models.py:513
+msgid "act on value"
+msgstr "Aktion bei Wert"
+
+#: djangochaos/models.py:514
+msgid "default attribute"
+msgstr "Standard-Attribut"
+
+#: djangochaos/models.py:538
+msgid "Model attribute to act on"
+msgstr "Modell-Attribut das übereinstimmen muss"
+
+#: djangochaos/models.py:539
+msgid "Act on attribute"
+msgstr "Modell-Wert der übereinstimmen muss"
+
+#: djangochaos/models.py:544
+msgid "Value of the attribute to act"
+msgstr "Wert des Attributes der übereinstimmen muss"
+
+#: djangochaos/models.py:545
+msgid "Act on value"
+msgstr "Aktion bei Wert"
+
+#: djangochaos/models.py:574
+msgid "ChaosActionDB"
+msgstr ""
+
+#: djangochaos/models.py:575
+msgid "ChaosActionDBs"
+msgstr ""
+
+#: djangochaos/models.py:607
+msgid "Key"
+msgstr "Schlüssel"
+
+#: djangochaos/models.py:609
+msgid "Value"
+msgstr "Wert"
+
+#: djangochaos/models.py:634
+msgid "ChaosKeyValue"
+msgstr ""
+
+#: djangochaos/models.py:635
+msgid "ChaosKeyValues"
+msgstr ""
+
+#: djangochaos/validators.py:10
+msgid "Invalid probability of {}"
+msgstr "Ungültige Wahrscheinlichkeit von {}"
+
+#~ msgid "Act on"
+#~ msgstr "Aktion auf"

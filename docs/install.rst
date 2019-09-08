@@ -1,0 +1,62 @@
+Install Djangochaos
+===================
+
+You will need at least Python 3.5 and Django 2.0, older releases are not
+supported. To install `djangochaos`:
+
+.. code-block:: shell
+
+    pip install djangochaos
+
+Add ``djangochaos`` to your `settings.INSTALLED_APPS`.
+
+If you want to run chaos experiments at the request/response level add the
+middleware to your settings, after the AuthenticationMiddleware:
+
+.. code-block:: python
+
+        MIDDLEWARE=[
+            # [...]
+            "django.contrib.sessions.middleware.SessionMiddleware",
+            "django.contrib.auth.middleware.AuthenticationMiddleware",
+            "djangochaos.middleware.ChaosResponseMiddleware",
+            "django.contrib.messages.middleware.MessageMiddleware",
+            # [...]
+        ],
+
+If you want to run chaos experiments on the database access level add the router
+to your settings:
+
+.. code-block:: python
+
+    DATABASE_ROUTERS = ["djangochaos.routers.ChaosRouter"]
+
+After migrating the database you're ready to plan and execute a chaos
+experiment.
+
+Excluding applications from experiments
+---------------------------------------
+
+You can configure actions to only run for specific views, models, apps, etc, but
+it can also be useful to exclude chaos actions globally from some applications:
+
+.. code-block:: python
+
+        CHAOS = {
+            "ignore_apps_db": ["auth"],
+            "ignore_apps_request": ["admin"],
+        }
+
+Using the management command in non-debug environments
+------------------------------------------------------
+
+Usually `djangochaos` will not create objects when ``DEBUG`` is not set to
+``True``, but it will still perform actions when they exist. To allow the
+creation of chaos actions from the management command even when not in debug
+mode:
+
+.. code-block:: python
+
+        CHAOS = {
+            "mock_safe": True,
+        }

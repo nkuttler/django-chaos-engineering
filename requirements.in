@@ -1,0 +1,11 @@
+black
+coverage
+django<3.0
+docformatter
+flake8
+flake8-html
+mypy
+sphinx
+sphinx_rtd_theme
+sphinx-autodoc-typehints
+lxml

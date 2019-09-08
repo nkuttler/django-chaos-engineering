@@ -1,0 +1,3 @@
+include LICENSE Makefile manage.py .flake8 .coveragerc mypy.ini djangochaos/README.rst
+recursive-include docs *
+prune docs/build

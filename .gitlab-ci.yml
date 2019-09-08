@@ -1,0 +1,53 @@
+stages:
+  - test
+
+.test_common: &test_common
+  stage: test
+  before_script:
+    - mkdir -p reports/{flake8,coverage}
+    - apt-get update -qq && apt-get install -y -qq build-essential sqlite3 libsqlite3-dev
+    - pip install -r requirements.txt || true  # py3.5 has no black
+  artifacts:
+    paths:
+      - reports/coverage/
+      - reports/flake8/
+      - reports/mypy/
+
+test_sqlite_py35:
+  image: "python:3.5"
+  <<: *test_common
+  script:
+    - pip install "django<3.0"
+    - python manage.py makemigrations --check
+    - python -m coverage run -p manage.py test -v2 --noinput
+    - python -m coverage combine
+    - python -m coverage html
+    - python -m coverage report
+    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - python -m flake8
+
+test_sqlite_py36:
+  image: "python:3.6"
+  <<: *test_common
+  script:
+    - python -m black --line-length 89 --check djangochaos
+    - python manage.py makemigrations --check
+    - python -m coverage run -p manage.py test -v2 --noinput
+    - python -m coverage combine
+    - python -m coverage html
+    - python -m coverage report
+    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - python -m flake8
+
+test_sqlite_py37:
+  image: "python:3.7"
+  <<: *test_common
+  script:
+    - python -m black --line-length 89 --check djangochaos
+    - python manage.py makemigrations --check
+    - python -m coverage run -p manage.py test -v2 --noinput
+    - python -m coverage combine
+    - python -m coverage html
+    - python -m coverage report
+    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - python -m flake8

@@ -1,0 +1,14 @@
+[run]
+source = .
+omit =
+	setup.py
+	manage.py
+	djangochaos/admin.py
+	djangochaos/apps.py
+	djangochaos/management/commands/monkey.py
+
+[html]
+directory = reports/coverage
+
+[paths]
+source = ./

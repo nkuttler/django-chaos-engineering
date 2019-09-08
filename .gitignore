@@ -1,0 +1,11 @@
+*pyc
+.coverage
+__pycache__
+db.sqlite3
+djangochaos.egg-info/
+reports/
+dist/
+docs/build/
+debug.log
+djangochaos/locale/*/LC_MESSAGES/django.mo
+.mypy_cache/
