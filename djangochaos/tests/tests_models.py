@@ -226,7 +226,7 @@ class KVUnitTest(TestCase):
 
 class RoundingDecimalFieldTest(TestCase):
     def setUp(self):
-        self.field = models.RoundingDecimalField()
+        self.field = models.RoundingDecimalField(decimal_places=5)
         super().setUp()
 
     def test_to_python_none(self):

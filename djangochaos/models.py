@@ -72,7 +72,7 @@ class RoundingDecimalField(models.DecimalField):
         if res is None:
             return res
 
-        return Decimal(Decimal(value).quantize(Decimal(".00001")))
+        return Decimal(value).quantize(Decimal(10) ** -self.decimal_places)
 
 
 class ChaosActionQuerySet(models.QuerySet):
