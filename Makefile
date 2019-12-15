@@ -6,11 +6,11 @@ RESOURCES_PY := $(shell find . -type f -name \*.py -print)
 BLACK=black --line-length 89 $(RESOURCES_PY)
 DOCFORMATTER=docformatter --recursive --make-summary-multi-line --pre-summary-newline ${RESOURCES_PY}
 
-default: test docs
+default: style checkmigrations test flake8 mypy
 
 ############################################################################
 # Distribution
-.PHONY: build sdist upload clean test
+.PHONY: build sdist upload clean test docs
 build:
 	python setup.py build
 
@@ -28,17 +28,23 @@ requirements.txt: Makefile requirements.in
 	pip-compile --no-index --no-emit-trusted-host --no-annotate \
 		--output-file requirements.txt requirements.in
 
-.PHONY: docs
 docs:
 	sphinx-build docs/ docs/build/
 
 ############################################################################
-# Commands
-test: style $(RESOURCES_PY)
+# Test commands
+.PHONY: checkmigrations test flake8 mypy messages
+checkmigrations:
 	python manage.py makemigrations djangochaos --check
+
+test: $(RESOURCES_PY)
 	coverage run manage.py test -v2
 	coverage html
+
+flake8:
 	flake8
+
+mypy:
 	-mypy djangochaos/ --html-report reports/mypy/
 
 messages: $(RESOURCES_PY)
@@ -46,16 +52,15 @@ messages: $(RESOURCES_PY)
 
 ############################################################################
 # Style
+.PHONY: style black blackcheck docformatter docformattercheck
 style: black docformatter
 
-.PHONY: black blackcheck
 black:
 	${BLACK}
 
 blackcheck:
 	${BLACK} --check
 
-.PHONY: docformatter docformattercheck
 docformatter:
 	${DOCFORMATTER} --in-place
 
