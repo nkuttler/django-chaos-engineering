@@ -567,7 +567,7 @@ class ChaosActionDB(ChaosActionBase):
         elif self.verb == verb_raise:
             self.perform_raise()
             return True  # Only reached during tests
-        return False
+        return None
 
     class Meta:
         ordering = ("-mtime",)

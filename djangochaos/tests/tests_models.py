@@ -216,6 +216,11 @@ class ChaosUnitPerformMixin:
             action.perform(**self.perform_kwargs,)
             self.assertEqual(1, mock_slow.call_count)
 
+    def test_action_perform_fallthrough_unknown_verb(self):
+        action = self._call_mockfn(enabled=True, probability=100)
+        action.verb = "blafasel"  # invalid choice, so don't save
+        self.assertEqual(None, action.perform())
+
 
 class KVUnitTest(TestCase):
     def test_str_repr(self, **kwargs: dict):
