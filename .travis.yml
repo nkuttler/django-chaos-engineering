@@ -1,0 +1,25 @@
+language: python
+python:
+  - 3.5
+  - 3.6
+  - 3.7
+  - 3.8
+  - pypy3.5
+  - pypy3  # This is currently 3.6, https://docs.travis-ci.com/user/languages/python/
+env:
+  - DJANGO="Django~=2.2"
+  - DJANGO="Django~=3.0"
+
+jobs:
+  exclude:
+    - python: 3.5
+      env: DJANGO="Django~=3.0"
+    - python: pypy3.5
+      env: DJANGO="Django~=3.0"
+
+install:
+  - grep -vi '^django=' requirements.txt | tee requirements.txt
+  - pip install -q -r requirements.txt
+  - pip install -q $DJANGO
+script:
+  - python manage.py test -v2 djangochaos
