@@ -18,7 +18,8 @@ sdist:
 	python setup.py sdist
 
 upload:
-	python setup.py sdist upload
+	python setup.py sdist bdist_wheel
+	twine upload --repository-url https://pypi.org/legacy/ dist/*
 
 clean:
 	rm -rfv dist build *.egg-info .coverage coverage reports docs/build \
