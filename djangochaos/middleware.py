@@ -3,8 +3,9 @@ Copyright (c) 2019 Nicolas Kuttler, see LICENSE for details.
 """
 
 import logging
+from typing import Callable
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.urls import resolve
 from django.urls.exceptions import Resolver404
 
@@ -25,10 +26,10 @@ class ChaosResponseMiddleware:
     3. Returning responses with specific status codes
     """
 
-    def __init__(self, get_response) -> None:
+    def __init__(self, get_response: Callable) -> None:
         self.get_response = get_response
 
-    def __call__(self, request) -> HttpResponse:
+    def __call__(self, request: HttpRequest) -> HttpResponse:
         """
         This is where we execute actions and return custom responses.
 
