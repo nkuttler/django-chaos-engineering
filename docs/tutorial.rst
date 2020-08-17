@@ -64,12 +64,13 @@ frontend. To remediate the behavior run one of:
    manage.py chaos disable response "your_view_name"
    manage.py chaos disable --all response
 
-3. Random failures throughout the system
-----------------------------------------
+..
+    3. Random failures throughout the system
+    ----------------------------------------
 
-If you're just getting started with chaos engineering you might want to get an
-overview which problems random failures can cause. To see this use:
+    If you're just getting started with chaos engineering you might want to get an
+    overview which problems random failures can cause. To see this use:
 
-.. code-block:: shell
+    .. code-block:: shell
 
-   manage.py chaos storm --user <yourusername>
+       manage.py chaos storm --user <yourusername>

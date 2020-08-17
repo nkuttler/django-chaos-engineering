@@ -6,6 +6,8 @@ from itertools import chain
 
 from django.contrib.auth.models import User, Group
 from django.core.management.base import BaseCommand, CommandError
+from django.urls import reverse
+from django.urls import exceptions
 from django.utils.translation import gettext as _
 
 from djangochaos import mock_data, models
@@ -15,6 +17,8 @@ from djangochaos import mock_data, models
 STORM_KEY = "creator"
 #: For KV value for special actions
 STORM_VALUE = "storm"
+
+STORM_ENABLED = False
 
 
 class Command(BaseCommand):
@@ -106,28 +110,29 @@ class Command(BaseCommand):
             "--excess", action="store_true", help=_("Dump excessive data")
         )
 
-        parser_storm = subparsers.add_parser("storm")
-        parser_storm.set_defaults(command="storm")
-        parser_storm.add_argument(
-            "--users",
-            nargs="+",
-            type=str,
-            help=_("The users to have a party for"),
-            default=User.objects.none(),
-        )
-        parser_storm.add_argument(
-            "--groups",
-            nargs="+",
-            type=str,
-            help=_("The groups to have a party for"),
-            default=Group.objects.none(),
-        )
-        parser_storm.add_argument(
-            "--end", action="store_true", help=_("Delete existing storm actions")
-        )
-        parser_storm.add_argument(
-            "--probability", type=int, help=_("Probability %% of created actions")
-        )
+        if STORM_ENABLED is True:
+            parser_storm = subparsers.add_parser("storm")
+            parser_storm.set_defaults(command="storm")
+            parser_storm.add_argument(
+                "--users",
+                nargs="+",
+                type=str,
+                help=_("The users to have a party for"),
+                default=User.objects.none(),
+            )
+            parser_storm.add_argument(
+                "--groups",
+                nargs="+",
+                type=str,
+                help=_("The groups to have a party for"),
+                default=Group.objects.none(),
+            )
+            parser_storm.add_argument(
+                "--end", action="store_true", help=_("Delete existing storm actions")
+            )
+            parser_storm.add_argument(
+                "--probability", type=int, help=_("Probability %% of created actions")
+            )
 
     def handle(self, *args, **options):
         cmd = options["command"]
@@ -146,14 +151,10 @@ class Command(BaseCommand):
                 excess=options["excess"],
             )
         elif cmd == "create_response":
-            config = {}
-            for kv in options.get("create_kv", []):
-                config[kv[0]] = kv[1]
-            self.create(
-                action_type="response",
-                verb=options.get("verb"),
-                act_on_url_name=options.get("url_name"),
-                config=config,
+            self.create_response(
+                options.get("url_name"),
+                options.get("verb"),
+                create_kv=options.get("create_kv", []),
             )
         elif cmd == "create_db":
             config = {}
@@ -170,10 +171,24 @@ class Command(BaseCommand):
             if options["end"] is True:
                 self.storm_end()
             else:
-                users = options["users"]
-                groups = options["groups"]
-                probability = options["probability"]
-                self.storm(users, groups, probability)
+                self.storm_start(
+                    options["users"], options["groups"], options["probability"]
+                )
+
+    def create_response(self, url_name, verb, create_kv=None):
+        config = {}
+        create_kv = create_kv or []
+        for kv in create_kv:
+            config[kv[0]] = kv[1]
+        try:
+            reverse(url_name)
+        except exceptions.NoReverseMatch:
+            self.stderr.write(
+                "Could not reverse name {}.. still continuing".format(url_name)
+            )
+        self.create(
+            action_type="response", verb=verb, act_on_url_name=url_name, config=config,
+        )
 
     def list(self, verb, include_models, more=False, excess=False):
         if "response" in include_models:
@@ -216,7 +231,7 @@ class Command(BaseCommand):
         models.ChaosActionDB.objects.filter(chaos_kvs__in=kvs).delete()
         models.ChaosActionResponse.objects.filter(chaos_kvs__in=kvs).delete()
 
-    def storm(self, users, groups, probability=None):
+    def storm_start(self, users, groups, probability=None):
         """
         Create some wildcard actions with relatively low probability.
 
