@@ -10,7 +10,7 @@ default: style checkmigrations test flake8 mypy
 
 ############################################################################
 # Distribution
-.PHONY: build sdist upload clean test docs
+.PHONY: build sdist upload clean test docs requirements.txt
 build:
 	python setup.py build
 
@@ -25,7 +25,7 @@ clean:
 	rm -rfv dist build *.egg-info .coverage coverage reports docs/build \
 		debug.log db.sqlite3 .mypy_cache djangochaos-*
 
-requirements.txt: Makefile requirements.in
+requirements.txt:
 	pip-compile --no-index --no-emit-trusted-host --no-annotate \
 		--output-file requirements.txt requirements.in
 

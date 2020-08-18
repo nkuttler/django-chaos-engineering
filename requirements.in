@@ -1,6 +1,6 @@
 black
 coverage
-django<3.0
+django<3
 docformatter
 flake8
 flake8-html
