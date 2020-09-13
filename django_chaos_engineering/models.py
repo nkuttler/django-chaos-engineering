@@ -604,7 +604,10 @@ class ChaosKV(models.Model):
         attr_status_code,
     ]
 
-    key = models.CharField(max_length=16, verbose_name=_("Key"),)
+    key = models.CharField(
+        max_length=16,
+        verbose_name=_("Key"),
+    )
     #: The type is known to the chaos code, we just store everything as string
     value = models.CharField(max_length=255, verbose_name=_("Value"))
 

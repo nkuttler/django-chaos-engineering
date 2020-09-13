@@ -1,6 +1,6 @@
 """
-Django admin module for `django_chaos_engineering`, in case people prefer to manage chaos
-actions through the admin interface.
+Django admin module for `django_chaos_engineering`, in case people prefer to
+manage chaos actions through the admin interface.
 
 Copyright (c) 2019 Nicolas Kuttler, see LICENSE for details.
 """

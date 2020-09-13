@@ -201,19 +201,27 @@ class ChaosUnitPerformMixin:
         for verb in self.cls.verb_choices_str:
             action = self._call_mockfn(enabled=True, verb=verb)
             with patch(
-                "django_chaos_engineering.models.{}.random_act".format(self.cls.__name__),
+                "django_chaos_engineering.models.{}.random_act".format(
+                    self.cls.__name__
+                ),
                 new_callable=unittest.mock.PropertyMock,
             ) as mock_rndact:
                 mock_rndact.return_value = False
                 action.perform(**self.perform_kwargs)
                 self.assertEqual(1, mock_rndact.call_count)
 
-        action = self._call_mockfn(enabled=True, probability=100, verb=models.verb_slow,)
+        action = self._call_mockfn(
+            enabled=True,
+            probability=100,
+            verb=models.verb_slow,
+        )
         with patch(
             "django_chaos_engineering.models.{}.perform_slow".format(self.cls.__name__),
             new_callable=unittest.mock.MagicMock,
         ) as mock_slow:
-            action.perform(**self.perform_kwargs,)
+            action.perform(
+                **self.perform_kwargs,
+            )
             self.assertEqual(1, mock_slow.call_count)
 
     def test_action_perform_fallthrough_unknown_verb(self):

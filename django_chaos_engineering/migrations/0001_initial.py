@@ -99,7 +99,9 @@ class Migration(migrations.Migration):
                         decimal_places=5,
                         default=100,
                         max_digits=8,
-                        validators=[django_chaos_engineering.validators.validate_probability],
+                        validators=[
+                            django_chaos_engineering.validators.validate_probability
+                        ],
                     ),
                 ),
                 (
@@ -173,7 +175,9 @@ class Migration(migrations.Migration):
                         decimal_places=5,
                         default=100,
                         max_digits=8,
-                        validators=[django_chaos_engineering.validators.validate_probability],
+                        validators=[
+                            django_chaos_engineering.validators.validate_probability
+                        ],
                     ),
                 ),
                 (

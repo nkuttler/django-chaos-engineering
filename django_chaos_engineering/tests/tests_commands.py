@@ -172,7 +172,12 @@ class CreateMixin:
         """
         subcmd = "create_{}".format(self.action_type)
         call_command(
-            "chaos", subcmd, verb, *args, stdout=self.out, stderr=self.err,
+            "chaos",
+            subcmd,
+            verb,
+            *args,
+            stdout=self.out,
+            stderr=self.err,
         )
         # self.assertFalse(self.err.getvalue(), "{}".format(subcmd))
         self.assertEqual(1, self.cls.objects.filter(verb=verb).count())

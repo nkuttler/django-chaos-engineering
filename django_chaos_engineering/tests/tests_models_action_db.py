@@ -39,7 +39,9 @@ class ActionDBUnitTest(ChaosUnitPerformMixin, ChaosActionMixin, TestCase):
                 attribute = data["attribute"]
                 value = attrgetter(attribute)(TestModel)
                 self._call_mockfn(
-                    verb=verb, act_on_attribute=attribute, act_on_value=value,
+                    verb=verb,
+                    act_on_attribute=attribute,
+                    act_on_value=value,
                 )
         self.assertEqual(
             len(self.cls.verb_choices_str) * len(models.attr_choices_db),

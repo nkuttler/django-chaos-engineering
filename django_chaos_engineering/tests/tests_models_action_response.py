@@ -19,7 +19,8 @@ class ActionResponseUnitTest(ChaosUnitPerformMixin, ChaosActionMixin, TestCase):
     def _test_url_filter_simple(self, url_name, expected_count):
         self._call_mockfn(act_on_url_name="foo", enabled=True)
         self.assertEqual(
-            expected_count, self.cls.objects.for_url(url_name).enabled().count(),
+            expected_count,
+            self.cls.objects.for_url(url_name).enabled().count(),
         )
 
     def test_url_filter_simple_same(self):
@@ -40,17 +41,19 @@ class ActionResponseUnitTest(ChaosUnitPerformMixin, ChaosActionMixin, TestCase):
         self._call_mockfn(act_on_url_name="foo")
         self._call_mockfn(act_on_url_name="")
         self.assertEqual(
-            2, self.cls.objects.for_url("foo").count(),
+            2,
+            self.cls.objects.for_url("foo").count(),
         )
 
     def test_for_view_blank(self):
         self._call_mockfn(act_on_url_name="foo")
         self._call_mockfn(act_on_url_name="")
         self.assertEqual(
-            1, self.cls.objects.for_url("").count(),
+            1,
+            self.cls.objects.for_url("").count(),
         )
 
-    def test_dump_response_excess(self,):
+    def test_dump_response_excess(self):
         action = self._call_mockfn(
             enabled=False, act_on_url_name="", config={"foo": "bar"}
         )

@@ -1,7 +1,8 @@
 """
 This module makes it easier to generate objects for testing and for the
 management command. By default generating mock data is disabled unless DEBUG is
-set to True, but this can be overridden in the `django_chaos_engineering` settings.
+set to True, but this can be overridden in the `django_chaos_engineering`
+settings.
 
 Copyright (c) 2019 Nicolas Kuttler, see LICENSE for details.
 """

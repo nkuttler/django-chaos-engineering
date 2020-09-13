@@ -23,13 +23,16 @@ STORM_ENABLED = False
 
 class Command(BaseCommand):
     """
-    The `chaos` command is a way to interact with `django_chaos_engineering` from the
-    command line.
+    The `chaos` command is a way to interact with `django_chaos_engineering`
+    from the command line.
     """
 
     def add_arguments(self, parser):
         # required kwargs not in python 3.5
-        subparsers = parser.add_subparsers(title="commands", dest="command",)
+        subparsers = parser.add_subparsers(
+            title="commands",
+            dest="command",
+        )
         subparsers.required = True
 
         parser_create_response = subparsers.add_parser("create_response")
@@ -41,7 +44,9 @@ class Command(BaseCommand):
             help=_("The action's effect"),
         )
         parser_create_response.add_argument(
-            "url_name", type=str, help=_("Url (by name) to act on"),
+            "url_name",
+            type=str,
+            help=_("Url (by name) to act on"),
         )
         parser_create_response.add_argument(
             "--create-kv",
@@ -62,7 +67,9 @@ class Command(BaseCommand):
             help=_("The action's effect"),
         )
         parser_create_db.add_argument(
-            "value", type=str, help=_("The value of the attribute to match"),
+            "value",
+            type=str,
+            help=_("The value of the attribute to match"),
         )
         parser_create_db.add_argument(
             "--attribute",
@@ -102,7 +109,10 @@ class Command(BaseCommand):
         parser_dump = subparsers.add_parser("dump")
         parser_dump.set_defaults(command="dump")
         parser_dump.add_argument(
-            "model", type=str, choices=models.model_choices, help=_("Action model"),
+            "model",
+            type=str,
+            choices=models.model_choices,
+            help=_("Action model"),
         )
         parser_dump.add_argument("id", type=int, help=_("Object id"))
         parser_dump.add_argument("--more", action="store_true", help=_("Dump more data"))
@@ -187,7 +197,10 @@ class Command(BaseCommand):
                 "Could not reverse name {}.. still continuing".format(url_name)
             )
         self.create(
-            action_type="response", verb=verb, act_on_url_name=url_name, config=config,
+            action_type="response",
+            verb=verb,
+            act_on_url_name=url_name,
+            config=config,
         )
 
     def list(self, verb, include_models, more=False, excess=False):
