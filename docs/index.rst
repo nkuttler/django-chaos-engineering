@@ -43,6 +43,11 @@ your Django project runs on multiple worker nodes and that configuring chaos
 actions on each one of them is not practical. Using a model we can also manage
 chaos experiments from the Django admin area or with management commands.
 
+I realize that adding models to a production database is not something everybody
+is comfortable with, but when you get to the point that you want to run this app
+in production you could either get in touch for some refactoring ideas or hire
+me to implement the necessary changes.
+
 Currently there are two methods of running chaos actions:
 
 1. A middleware that brings chaos to requests/views
@@ -52,8 +57,8 @@ I would love to introduce other kinds of actions, e.g. errors connecting to
 remote services and modifying data returned from such services, etc. But it
 seems like such experiments would better be done with other tools. It might be
 possible to create some of these effects by providing e.g. a `@chaos` decorator,
-but having to modify the source code of an application to run chaos experiments
-sounds too intrusive to me.
+but having to modify the source code of an application in several places to run
+chaos experiments sounds too intrusive to me.
 
 If you want to run tests on your infrastructure, you can try tools like
 `toxiproxy <https://github.com/shopify/toxiproxy>`_ and `pumba
