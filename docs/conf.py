@@ -24,11 +24,11 @@ import django
 
 
 sys.path.insert(0, os.path.abspath("../test_project"))
-sys.path.insert(0, os.path.abspath("../djangochaos"))
+sys.path.insert(0, os.path.abspath("../django_chaos_engineering"))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 django.setup()
 
-project = "djangochaos"
+project = "django_chaos_engineering"
 copyright = "2019, Nicolas Kuttler"
 author = "Nicolas Kuttler"
 

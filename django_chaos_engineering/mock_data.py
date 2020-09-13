@@ -1,7 +1,7 @@
 """
 This module makes it easier to generate objects for testing and for the
 management command. By default generating mock data is disabled unless DEBUG is
-set to True, but this can be overridden in the `djangochaos` settings.
+set to True, but this can be overridden in the `django_chaos_engineering` settings.
 
 Copyright (c) 2019 Nicolas Kuttler, see LICENSE for details.
 """
@@ -16,7 +16,7 @@ from django.conf import settings
 from django.contrib.auth.models import Group, User
 from django.utils.translation import gettext as _
 
-from djangochaos import models
+from django_chaos_engineering import models
 
 
 logger = logging.getLogger(__name__)

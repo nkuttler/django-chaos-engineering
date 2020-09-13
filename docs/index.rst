@@ -11,10 +11,10 @@ Djangochaos
    developing
    class_reference
 
-`djangochaos` allows Django developers to quickly run simple `chaos
+`django_chaos_engineering` allows Django developers to quickly run simple `chaos
 engineering <https://en.wikipedia.org/wiki/Chaos_engineering>`_ experiments.
 Obviously a Django application can only create errors at the Django level, so
-the experiments you can run with `djangochaos` are limited in scope.
+the experiments you can run with `django_chaos_engineering` are limited in scope.
 
 You will need to use other tools to experiment on an infrastructure level, see
 also the section on :ref:`limitations <design>`.
@@ -23,7 +23,7 @@ Use cases
 =========
 
 If your Django site uses JavaScript heavily and has a frontend that consumes
-multiple API endpoints for one page you can use `djangochaos` to
+multiple API endpoints for one page you can use `django_chaos_engineering` to
 simulate the failure of individual endpoints. This can be useful for frontend
 experiments, especially assuming you use e.g. load balancers or multiple data
 sources in production where failure of single endpoints is plausible.

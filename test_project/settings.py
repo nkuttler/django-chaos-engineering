@@ -14,15 +14,15 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "test_project.testapp",
-    "djangochaos",
+    "django_chaos_engineering",
 ]
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "djangochaos.middleware.ChaosResponseMiddleware",
+    "django_chaos_engineering.middleware.ChaosResponseMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
-DATABASE_ROUTERS = ["djangochaos.routers.ChaosRouter"]
+DATABASE_ROUTERS = ["django_chaos_engineering.routers.ChaosRouter"]
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 TEMPLATES = [
     {
@@ -64,4 +64,4 @@ LOGGING = {
     },
     "loggers": {"django": {"handlers": ["file"], "level": "DEBUG", "propagate": True}},
 }
-LOCALE_PATHS = [os.path.join("djangochaos", "locale")]
+LOCALE_PATHS = [os.path.join("django_chaos_engineering", "locale")]

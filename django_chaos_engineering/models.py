@@ -1,5 +1,5 @@
 """
-The `djangochaos` models are there to configure chaos actions.
+The `django_chaos_engineering` models are there to configure chaos actions.
 
 At the time the app was created this seemed like the best way to ensure
 tests are available on multiple app servers.
@@ -29,8 +29,8 @@ from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
-from djangochaos import exceptions as chaos_exceptions
-from djangochaos import validators
+from django_chaos_engineering import exceptions as chaos_exceptions
+from django_chaos_engineering import validators
 
 
 logger = logging.getLogger(__name__)
@@ -161,7 +161,7 @@ class ChaosActionBase(models.Model):
 
     #: The default exception the action raises
     default_exception = chaos_exceptions.ChaosException
-    default_exception_path = "djangochaos.exceptions.ChaosException"
+    default_exception_path = "django_chaos_engineering.exceptions.ChaosException"
 
     ctime = models.DateTimeField(
         auto_now_add=timezone.now, verbose_name=_("Creation time")
@@ -392,7 +392,7 @@ class ChaosActionResponse(ChaosActionBase):
     objects = ChaosActionResponseManager()
 
     default_exception = chaos_exceptions.ChaosExceptionResponse
-    default_exception_path = "djangochaos.exceptions.ChaosExceptionResponse"
+    default_exception_path = "django_chaos_engineering.exceptions.ChaosExceptionResponse"
 
     dump_cls = {
         _("act on url name"): "act_on_url_name",
@@ -506,7 +506,7 @@ class ChaosActionDB(ChaosActionBase):
     objects = ChaosActionDBManager()
 
     default_exception = chaos_exceptions.ChaosExceptionDB
-    default_exception_path = "djangochaos.exceptions.ChaosExceptionDB"
+    default_exception_path = "django_chaos_engineering.exceptions.ChaosExceptionDB"
 
     dump_cls = {
         _("act on attribute"): "act_on_attribute",

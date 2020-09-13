@@ -3,7 +3,7 @@ from unittest.mock import patch
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from djangochaos import exceptions, mock_data, models
+from django_chaos_engineering import exceptions, mock_data, models
 
 
 class ModelChaosActionResponseSlowTest(TestCase):
@@ -15,7 +15,7 @@ class ModelChaosActionResponseSlowTest(TestCase):
     def setUp(self):
         self.c = Client()
 
-    @patch("djangochaos.models.time.sleep")
+    @patch("django_chaos_engineering.models.time.sleep")
     def _test_response_slow(self, _sleep, slow_min=100, slow_max=100):
         config = {
             models.ChaosKV.attr_slow_min: slow_min,
@@ -72,7 +72,7 @@ class ModelChaosActionResponseSlowTest(TestCase):
     def test_response_status_500(self):
         self._test_response(500)
 
-    @patch("djangochaos.models.time.sleep")
+    @patch("django_chaos_engineering.models.time.sleep")
     def test_perform_slow_wildcard_act_on(self, _sleep):
         mock_data.make_action_response(
             verb=models.verb_slow, act_on_url_name="", probability=100, enabled=True
@@ -98,7 +98,7 @@ class ModelChaosActionResponseRaiseTest(TestCase):
         with self.assertRaises(exceptions.ChaosExceptionResponse):
             self.c.get(url)
 
-    @patch("djangochaos.models.logger.error")
+    @patch("django_chaos_engineering.models.logger.error")
     def test_action_importerror_raises_builtin(self, _logger):
         kwargs = {
             "verb": models.verb_raise,
@@ -113,7 +113,7 @@ class ModelChaosActionResponseRaiseTest(TestCase):
             self.c.get(url)
         self.assertEqual(1, _logger.call_count)
 
-    @patch("djangochaos.models.logger.error")
+    @patch("django_chaos_engineering.models.logger.error")
     def test_action_bad_path_raises_builtin(self, _logger):
         kwargs = {
             "verb": models.verb_raise,

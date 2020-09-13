@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from djangochaos.tests import tests_mock
-from djangochaos import mock_data
+from django_chaos_engineering.tests import tests_mock
+from django_chaos_engineering import mock_data
 
 
 mockfn = mock_data.make_action_db

@@ -12,11 +12,11 @@ results. One strategy to run them is:
 2. Form a hypothesis how your application will react and determine a log metric
    that will reflect the failure.
 3. Plan remediation steps that bring the behavior back to normal
-4. Run the experiment, start the failure with `djangochaos` by
+4. Run the experiment, start the failure with `django_chaos_engineering` by
    creating or enabling an action.
 5. Verify the application's reaction and the metric.
 6. Validate that applying the remediation steps bring behavior and metrics back
-   to the normal state. With `djangochaos` this  can be achieved by disabling or
+   to the normal state. With `django_chaos_engineering` this  can be achieved by disabling or
    deleting the action.
 7. Develop a fix for the measured failure.
 8. Repeat the experiment and verify that the failure doesn't happen again.
@@ -26,7 +26,7 @@ ops people: Introduce the failure, have them detect it, figure out the
 remediation steps, and deploy a fix. `Djangochaos` stores chaos actions in the
 database, so nobody should look at those models during the exercise.
 
-Examples of djangochaos experiments
+Examples of django_chaos_engineering experiments
 ===================================
 
 This section contains examples that can help you to get started with your

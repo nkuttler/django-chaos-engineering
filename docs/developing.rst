@@ -1,4 +1,4 @@
-Developing djangochaos
+Developing django_chaos_engineering
 ======================
 
 You want to hack this code? Great! Install all dependencies::

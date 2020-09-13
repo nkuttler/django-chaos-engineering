@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.urls import exceptions
 from django.utils.translation import gettext as _
 
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 #: For KV key for special actions
@@ -23,7 +23,7 @@ STORM_ENABLED = False
 
 class Command(BaseCommand):
     """
-    The `chaos` command is a way to interact with `djangochaos` from the
+    The `chaos` command is a way to interact with `django_chaos_engineering` from the
     command line.
     """
 

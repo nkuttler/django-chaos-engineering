@@ -3,9 +3,9 @@ source = .
 omit =
 	setup.py
 	manage.py
-	djangochaos/admin.py
-	djangochaos/apps.py
-	djangochaos/management/commands/monkey.py
+	django_chaos_engineering/admin.py
+	django_chaos_engineering/apps.py
+	django_chaos_engineering/management/commands/monkey.py
 
 [html]
 directory = reports/coverage

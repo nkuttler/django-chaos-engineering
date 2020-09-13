@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from djangochaos.tests.tests_admin import ChaosAdminMixin
-from djangochaos import mock_data
+from django_chaos_engineering.tests.tests_admin import ChaosAdminMixin
+from django_chaos_engineering import mock_data
 
 
 mockfn = mock_data.make_action_db

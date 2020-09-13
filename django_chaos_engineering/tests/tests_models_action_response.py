@@ -1,10 +1,10 @@
 from django.test import TestCase
 
-from djangochaos.tests.tests_models import (
+from django_chaos_engineering.tests.tests_models import (
     ChaosUnitPerformMixin,
     ChaosActionMixin,
 )
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 mockfn = mock_data.make_action_response

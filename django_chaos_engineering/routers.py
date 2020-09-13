@@ -8,7 +8,7 @@ from operator import attrgetter
 from django.db.models import Model
 from django.conf import settings
 
-from djangochaos import models
+from django_chaos_engineering import models
 
 
 class ChaosRouter:
@@ -34,9 +34,9 @@ class ChaosRouter:
         Chaos actions for database reads.
         """
 
-        # No side effects for djangochaos itself
+        # No side effects for django_chaos_engineering itself
         if model._meta.app_label in [
-            "djangochaos",
+            "django_chaos_engineering",
             *settings.CHAOS.get("ignore_apps", []),
         ]:
             return None
@@ -48,9 +48,9 @@ class ChaosRouter:
         Chaos actions for database writes.
         """
 
-        # No side effects for djangochaos itself
+        # No side effects for django_chaos_engineering itself
         if model._meta.app_label in [
-            "djangochaos",
+            "django_chaos_engineering",
             *settings.CHAOS.get("ignore_apps", []),
         ]:
             return None

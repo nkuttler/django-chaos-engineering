@@ -29,4 +29,4 @@ install:
   - pip install -q -r requirements.txt
   - pip install -q $DJANGO
 script:
-  - python manage.py test -v2 djangochaos
+  - python manage.py test -v2 django_chaos_engineering

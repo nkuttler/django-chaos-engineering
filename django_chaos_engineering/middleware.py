@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpRequest
 from django.urls import resolve
 from django.urls.exceptions import Resolver404
 
-from djangochaos import models
+from django_chaos_engineering import models
 
 
 logger = logging.getLogger(__name__)

@@ -5,31 +5,31 @@ Class reference
 Models
 ======
 
-.. automodule:: djangochaos.models
+.. automodule:: django_chaos_engineering.models
 
 Routers
 =======
 
-.. automodule:: djangochaos.routers
+.. automodule:: django_chaos_engineering.routers
 
 Middleware
 ==========
 
-.. automodule:: djangochaos.middleware
+.. automodule:: django_chaos_engineering.middleware
 
 Mock data
 =========
 
-.. automodule:: djangochaos.mock_data
+.. automodule:: django_chaos_engineering.mock_data
 
 Chaos command
 =============
 
-.. automodule:: djangochaos.management.commands.chaos
+.. automodule:: django_chaos_engineering.management.commands.chaos
 
 Rest
 ====
 
-.. automodule:: djangochaos.admin
-.. automodule:: djangochaos.validators
-.. automodule:: djangochaos.exceptions
+.. automodule:: django_chaos_engineering.admin
+.. automodule:: django_chaos_engineering.validators
+.. automodule:: django_chaos_engineering.exceptions

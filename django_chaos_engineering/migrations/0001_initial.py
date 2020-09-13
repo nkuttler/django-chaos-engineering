@@ -3,8 +3,8 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import djangochaos.models
-import djangochaos.validators
+import django_chaos_engineering.models
+import django_chaos_engineering.validators
 
 
 class Migration(migrations.Migration):
@@ -95,11 +95,11 @@ class Migration(migrations.Migration):
                 ("enabled", models.BooleanField(default=True, verbose_name="Enabled")),
                 (
                     "probability",
-                    djangochaos.models.RoundingDecimalField(
+                    django_chaos_engineering.models.RoundingDecimalField(
                         decimal_places=5,
                         default=100,
                         max_digits=8,
-                        validators=[djangochaos.validators.validate_probability],
+                        validators=[django_chaos_engineering.validators.validate_probability],
                     ),
                 ),
                 (
@@ -169,11 +169,11 @@ class Migration(migrations.Migration):
                 ("enabled", models.BooleanField(default=True, verbose_name="Enabled")),
                 (
                     "probability",
-                    djangochaos.models.RoundingDecimalField(
+                    django_chaos_engineering.models.RoundingDecimalField(
                         decimal_places=5,
                         default=100,
                         max_digits=8,
-                        validators=[djangochaos.validators.validate_probability],
+                        validators=[django_chaos_engineering.validators.validate_probability],
                     ),
                 ),
                 (

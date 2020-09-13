@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 class MockActionTestMixin:
@@ -19,7 +19,7 @@ class MockActionTestMixin:
         self.assertFalse(action.enabled)
 
     @override_settings(CHAOS={"mock_safe": False})
-    @patch("djangochaos.mock_data.logger.warning")
+    @patch("django_chaos_engineering.mock_data.logger.warning")
     def test_safe_decorator_raises_exception_without_debug(self, _warn):
         self._call_mockfn(enabled=False)
         self.assertEqual(1, _warn.call_count)

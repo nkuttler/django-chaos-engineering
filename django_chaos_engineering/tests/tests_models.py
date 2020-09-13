@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 class ChaosActionMixin(abc.ABC):
@@ -147,13 +147,13 @@ class ChaosActionMixin(abc.ABC):
         self.assertEqual(1, self.cls.objects.for_user(user).count())
         self.assertEqual(0, self.cls.objects.for_user(other_user).count())
 
-    @patch("djangochaos.models.time.sleep")
+    @patch("django_chaos_engineering.models.time.sleep")
     def test_perform_slow(self, _sleep):
         action = self._call_mockfn(verb=models.verb_slow)
         action.perform_slow()
         self.assertEqual(1, _sleep.call_count)
 
-    @patch("djangochaos.models.time.sleep")
+    @patch("django_chaos_engineering.models.time.sleep")
     def test_perform_slow_min_gt_max(self, _sleep):
         action = self._call_mockfn(verb=models.verb_slow)
         mock_data.make_kv(action, "slow_min", 2000)
@@ -167,15 +167,15 @@ class ChaosActionMixin(abc.ABC):
         self._call_mockfn(probability=100, on_host="example.io")
         self.assertEqual(1, self.cls.objects.on_host("example.com").count())
 
-    @patch("djangochaos.models.socket.gethostname", lambda: "example.com")
-    @patch("djangochaos.models.socket.getfqdn", lambda: "example.com")
+    @patch("django_chaos_engineering.models.socket.gethostname", lambda: "example.com")
+    @patch("django_chaos_engineering.models.socket.getfqdn", lambda: "example.com")
     def test_manager_on_this_host(self):
         self._call_mockfn(probability=100, on_host="example.com")
         self._call_mockfn(probability=100, on_host="foo.example.com")
         self.assertEqual(1, self.cls.objects.on_this_host().count())
 
-    @patch("djangochaos.models.socket.gethostname", lambda: "example.com")
-    @patch("djangochaos.models.socket.getfqdn", lambda: "example.com")
+    @patch("django_chaos_engineering.models.socket.gethostname", lambda: "example.com")
+    @patch("django_chaos_engineering.models.socket.getfqdn", lambda: "example.com")
     def test_manager_on_this_host_when_blank(self):
         self._call_mockfn(probability=100)
         self._call_mockfn(probability=100, on_host="foo.example.com")
@@ -201,7 +201,7 @@ class ChaosUnitPerformMixin:
         for verb in self.cls.verb_choices_str:
             action = self._call_mockfn(enabled=True, verb=verb)
             with patch(
-                "djangochaos.models.{}.random_act".format(self.cls.__name__),
+                "django_chaos_engineering.models.{}.random_act".format(self.cls.__name__),
                 new_callable=unittest.mock.PropertyMock,
             ) as mock_rndact:
                 mock_rndact.return_value = False
@@ -210,7 +210,7 @@ class ChaosUnitPerformMixin:
 
         action = self._call_mockfn(enabled=True, probability=100, verb=models.verb_slow,)
         with patch(
-            "djangochaos.models.{}.perform_slow".format(self.cls.__name__),
+            "django_chaos_engineering.models.{}.perform_slow".format(self.cls.__name__),
             new_callable=unittest.mock.MagicMock,
         ) as mock_slow:
             action.perform(**self.perform_kwargs,)

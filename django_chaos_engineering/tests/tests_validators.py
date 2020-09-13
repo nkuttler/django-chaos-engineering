@@ -3,7 +3,7 @@ from decimal import Decimal
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 
-from djangochaos import validators
+from django_chaos_engineering import validators
 
 
 class ValidatorTest(TestCase):

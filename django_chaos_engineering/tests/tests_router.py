@@ -4,8 +4,8 @@ from unittest.mock import patch
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from djangochaos import mock_data, models
-from djangochaos.routers import ChaosRouter
+from django_chaos_engineering import mock_data, models
+from django_chaos_engineering.routers import ChaosRouter
 from django.contrib.sites.models import Site as TestModel
 
 
@@ -47,7 +47,7 @@ class RouterUnitTest(TestCase):
     def test_db_for_write_is_none_for_random(self):
         self.assertEqual(None, self.router.db_for_write(TestModel))
 
-    @patch("djangochaos.routers.ChaosRouter.do_chaos")
+    @patch("django_chaos_engineering.routers.ChaosRouter.do_chaos")
     def _test_do_chaos_is_called_for_read(self, attr, _chaos):
         model = TestModel
         mock_data.make_action_db(
@@ -91,7 +91,7 @@ class RouterUnitTest(TestCase):
         )
         self.router.db_for_write(TestModel)
 
-    @patch("djangochaos.models.time.sleep")
+    @patch("django_chaos_engineering.models.time.sleep")
     def test_action_slow_is_performed_for_write(self, _sleep):
         mock_data.make_action_db(
             act_on_value=TEST_APP_LABEL,

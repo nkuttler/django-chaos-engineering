@@ -5,11 +5,11 @@ from django.test import TestCase
 from django.contrib.sites.models import Site as TestModel
 from django.core.exceptions import ValidationError
 
-from djangochaos.tests.tests_models import (
+from django_chaos_engineering.tests.tests_models import (
     ChaosUnitPerformMixin,
     ChaosActionMixin,
 )
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 mockfn = mock_data.make_action_db
@@ -53,8 +53,8 @@ class ActionDBUnitTest(ChaosUnitPerformMixin, ChaosActionMixin, TestCase):
                 value = attrgetter(attribute)(TestModel)
                 self._test_return_type_action_not_performed(verb, attribute, value)
 
-    @patch("djangochaos.models.ChaosActionDB.perform_raise")
-    @patch("djangochaos.models.ChaosActionDB.perform_slow")
+    @patch("django_chaos_engineering.models.ChaosActionDB.perform_raise")
+    @patch("django_chaos_engineering.models.ChaosActionDB.perform_slow")
     def _test_return_type_action_performed(self, verb, attribute, value, *mock_args):
         action = self._call_mockfn(
             enabled=True,

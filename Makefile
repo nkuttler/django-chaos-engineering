@@ -23,7 +23,7 @@ upload:
 
 clean:
 	rm -rfv dist build *.egg-info .coverage coverage reports docs/build \
-		debug.log db.sqlite3 .mypy_cache djangochaos-*
+		debug.log db.sqlite3 .mypy_cache django_chaos_engineering-*
 
 requirements.txt:
 	pip-compile --no-index --no-emit-trusted-host --no-annotate \
@@ -36,7 +36,7 @@ docs:
 # Test commands
 .PHONY: checkmigrations test flake8 mypy messages
 checkmigrations:
-	python manage.py makemigrations djangochaos --check
+	python manage.py makemigrations django_chaos_engineering --check
 
 test: $(RESOURCES_PY)
 	coverage run manage.py test -v2
@@ -46,7 +46,7 @@ flake8:
 	flake8
 
 mypy:
-	-mypy djangochaos/ --html-report reports/mypy/
+	-mypy django_chaos_engineering/ --html-report reports/mypy/
 
 messages: $(RESOURCES_PY)
 	python manage.py makemessages

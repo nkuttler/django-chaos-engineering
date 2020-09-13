@@ -23,31 +23,31 @@ test_sqlite_py35:
     - python -m coverage combine
     - python -m coverage html
     - python -m coverage report
-    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - mypy django_chaos_engineering/ --html-report reports/mypy/ || true
     - python -m flake8
 
 test_sqlite_py36:
   image: "python:3.6"
   <<: *test_common
   script:
-    - python -m black --line-length 89 --check djangochaos
+    - python -m black --line-length 89 --check django_chaos_engineering
     - python manage.py makemigrations --check
     - python -m coverage run -p manage.py test -v2 --noinput
     - python -m coverage combine
     - python -m coverage html
     - python -m coverage report
-    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - mypy django_chaos_engineering/ --html-report reports/mypy/ || true
     - python -m flake8
 
 test_sqlite_py37:
   image: "python:3.7"
   <<: *test_common
   script:
-    - python -m black --line-length 89 --check djangochaos
+    - python -m black --line-length 89 --check django_chaos_engineering
     - python manage.py makemigrations --check
     - python -m coverage run -p manage.py test -v2 --noinput
     - python -m coverage combine
     - python -m coverage html
     - python -m coverage report
-    - mypy djangochaos/ --html-report reports/mypy/ || true
+    - mypy django_chaos_engineering/ --html-report reports/mypy/ || true
     - python -m flake8

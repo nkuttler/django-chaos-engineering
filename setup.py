@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 
 with open(
-    os.path.join(os.path.dirname(__file__), "djangochaos", "README.rst")
+    os.path.join(os.path.dirname(__file__), "django_chaos_engineering", "README.rst")
 ) as readme:
     README = readme.read()
 
@@ -11,7 +11,7 @@ with open(
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name="djangochaos",
+    name="django_chaos_engineering",
     version="0.1",
     packages=find_packages(),
     include_package_data=True,
@@ -19,7 +19,7 @@ setup(
     description="A Django app to introduce controlled failure into projects.",
     long_description=README,
     long_description_content_type="text/x-rst",
-    url="https://www.gitlab.com/nkuttler/djangochaos/",
+    url="https://www.gitlab.com/nkuttler/django_chaos_engineering/",
     author="Nicolas Kuttler",
     author_email="django@kuttler.eu",
     classifiers=[

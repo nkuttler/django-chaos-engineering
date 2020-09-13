@@ -2,7 +2,7 @@ from django.test import Client
 from django.test.utils import override_settings
 from django.urls import reverse
 
-from djangochaos import mock_data, models
+from django_chaos_engineering import mock_data, models
 
 
 class ChaosAdminMixin:
@@ -18,17 +18,17 @@ class ChaosAdminMixin:
     @override_settings(CHAOS={"mock_safe": True, "ignore_apps_request": ["admin"]})
     def test_admin_list(self):
         self._call_mockfn(verb=models.verb_raise, probability=100)
-        url = reverse("admin:djangochaos_{}_changelist".format(self.modelstr))
+        url = reverse("admin:django_chaos_engineering_{}_changelist".format(self.modelstr))
         self.assertEqual(200, self.c.get(url).status_code)
 
     @override_settings(CHAOS={"mock_safe": True, "ignore_apps_request": ["admin"]})
     def test_admin_change(self):
         action = self._call_mockfn(verb=models.verb_raise, probability=100)
         url = reverse(
-            "admin:djangochaos_{}_change".format(self.modelstr), args=(action.pk,)
+            "admin:django_chaos_engineering_{}_change".format(self.modelstr), args=(action.pk,)
         )
         self.assertEqual(200, self.c.get(url).status_code)
 
     def test_admin_new(self):
-        url = reverse("admin:djangochaos_{}_add".format(self.modelstr))
+        url = reverse("admin:django_chaos_engineering_{}_add".format(self.modelstr))
         self.assertEqual(200, self.c.get(url).status_code)

@@ -6,7 +6,7 @@ build/
 db.sqlite3
 debug.log
 dist/
-djangochaos.egg-info/
-djangochaos/locale/*/LC_MESSAGES/django.mo
+django_chaos_engineering.egg-info/
+django_chaos_engineering/locale/*/LC_MESSAGES/django.mo
 docs/build/
 reports/

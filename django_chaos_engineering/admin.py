@@ -1,10 +1,10 @@
 """
-Django admin module for `djangochaos`, in case people prefer to manage chaos
+Django admin module for `django_chaos_engineering`, in case people prefer to manage chaos
 actions through the admin interface.
 
 Copyright (c) 2019 Nicolas Kuttler, see LICENSE for details.
 """
-from djangochaos import models
+from django_chaos_engineering import models
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.translation import gettext_lazy as _

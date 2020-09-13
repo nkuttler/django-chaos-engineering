@@ -6,8 +6,8 @@ from django.test import TestCase
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-from djangochaos import mock_data, models
-from djangochaos.management.commands.chaos import STORM_KEY, STORM_VALUE
+from django_chaos_engineering import mock_data, models
+from django_chaos_engineering.management.commands.chaos import STORM_KEY, STORM_VALUE
 
 
 class OutsMixin:
@@ -113,14 +113,14 @@ class GenericCommandTest(OutsMixin, TestCase):
         with self.assertRaises(CommandError):
             call_command("chaos", "foo", stdout=self.out, stderr=self.err)
 
-    @patch("djangochaos.models.ChaosActionBase.dump")
+    @patch("django_chaos_engineering.models.ChaosActionBase.dump")
     def test_dump_db(self, _dump):
         key = models.ChaosKV.get_random_key()
         action = mock_data.make_action_db(config={key: "bar"})
         call_command("chaos", "dump", "db", action.id, stdout=self.out, stderr=self.err)
         self.assertEqual(1, _dump.call_count)
 
-    @patch("djangochaos.models.ChaosActionBase.dump")
+    @patch("django_chaos_engineering.models.ChaosActionBase.dump")
     def test_dump_response(self, _dump):
         key = models.ChaosKV.get_random_key()
         action = mock_data.make_action_response(config={key: "bar"})
@@ -137,7 +137,7 @@ class GenericCommandTest(OutsMixin, TestCase):
             "chaos", "dump", "response", action.id, stdout=self.out, stderr=self.err
         )
 
-    @patch("djangochaos.models.ChaosActionBase.dump")
+    @patch("django_chaos_engineering.models.ChaosActionBase.dump")
     def test_dump_response_does_not_exist(self, _dump):
         call_command("chaos", "dump", "response", 123, stdout=self.out, stderr=self.err)
         self.assertEqual(0, _dump.call_count)
@@ -266,7 +266,7 @@ class CreateMixin:
 
 
 class CreateResponseTest(CreateMixin, OutsMixin, TestCase):
-    mocker = "djangochaos.mock_data.make_action_response"
+    mocker = "django_chaos_engineering.mock_data.make_action_response"
     action_type = "response"
     cls = models.ChaosActionResponse
 
@@ -278,6 +278,6 @@ class CreateResponseTest(CreateMixin, OutsMixin, TestCase):
 
 
 class CreateResponseDB(CreateMixin, OutsMixin, TestCase):
-    mocker = "djangochaos.mock_data.make_action_db"
+    mocker = "django_chaos_engineering.mock_data.make_action_db"
     action_type = "db"
     cls = models.ChaosActionDB
