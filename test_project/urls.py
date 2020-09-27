@@ -1,10 +1,10 @@
-from django.conf.urls import url
 from django.contrib import admin
 
 from test_project.testapp import views
+from django.urls import path
 
 
 urlpatterns = [
-    url("^test_view/", views.test_view, name="test_view"),
-    url(r"^admin/", admin.site.urls),
+    path("test_view/", views.test_view, name="test_view"),
+    path("admin/", admin.site.urls),
 ]
